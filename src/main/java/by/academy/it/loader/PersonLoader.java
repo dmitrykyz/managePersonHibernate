@@ -19,10 +19,10 @@ public class PersonLoader {
         util = HibernateUtil.getHibernateUtil();
         System.out.println("Start Menu");
 
-        Person person = null;
+        //Person person = null;
 
-        person = createPerson(person);
-        getPersonDao().saveOrUpdate(person);
+        //person = createPerson(person);
+        //getPersonDao().saveOrUpdate(person);
         menu();
     }
 }

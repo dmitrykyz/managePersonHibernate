@@ -37,7 +37,6 @@ public class MenuLoader {
                 case 0:
                     System.exit(0); break;
                 case 1:
-                    // Perform "original number" case.
                     deletePerson();
                     break;
                 case 2:
@@ -51,7 +50,10 @@ public class MenuLoader {
                     person = loadPerson();
                     break;
                 case 5:
-                    person = findPerson();
+                    flushSession();
+                    break;
+                case 6:
+                    refreshSession();
                     break;
                 default:
                     needMenu = true;
@@ -62,6 +64,7 @@ public class MenuLoader {
 
     }
 
+
     private static void printMenu() {
         System.out.println(" Options:");
         System.out.println("        0. Exit");
@@ -69,7 +72,8 @@ public class MenuLoader {
         System.out.println("        2. Get Person");
         System.out.println("        3. Save or Update Person");
         System.out.println("        4. Load Person");
-        System.out.println("        5. Get(Find) Person");
+        System.out.println("        5. Flush Session");
+        System.out.println("        6. Refresh Session");
     }
 
     public static Person createPerson(Person person) {
@@ -134,7 +138,7 @@ public class MenuLoader {
         Person person = null;
         Integer id = scanner.nextInt();
         try {
-            person = getPersonDao().get(id);
+            person = getPersonDao().load(id);
         } catch (DaoException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (NullPointerException e) {
@@ -158,6 +162,23 @@ public class MenuLoader {
             getPersonDao().flush(id, name);
         } catch (DaoException e) {
             log.error("Unable run flush example");
+        }
+    }
+
+    public static void refreshSession() {
+        System.out.println("Please enter person id:");
+        System.out.print("Id - ");
+        Scanner scanner = new Scanner(System.in);
+        Person person = null;
+        Integer id = scanner.nextInt();
+        System.out.println("Please enter new Name:");
+        System.out.print("New Name - ");
+        scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        try {
+            getPersonDao().refresh(id, name);
+        } catch (DaoException e) {
+            log.error("Unable run refresh example");
         }
     }
 

@@ -31,14 +31,38 @@ public class PersonDao extends BaseDao<Person> {
     public void flush(Integer id, String newName) throws DaoException {
         try {
             Session session = util.getSession();
+            //setTransaction(session.beginTransaction());
             Person p = (Person)session.get(Person.class, id);
             System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
             p.setName(newName);
             System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
             session.flush();
             System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
+            //getTransaction().commit();
         } catch (HibernateException e) {
             log.error("Error Flush person" + e);
+            throw new DaoException(e);
+        }
+
+    }
+
+    public void refresh(Integer id, String newName) throws DaoException {
+        try {
+            Session session = util.getSession();
+            Person p = (Person)session.get(Person.class, id);
+            System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
+            p.setName(newName);
+            System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
+            session.refresh(p);
+            System.out.println(p);
+            System.out.println("isDirty = " + session.isDirty());
+        } catch (HibernateException e) {
+            log.error("Error Refresh person" + e);
             throw new DaoException(e);
         }
 

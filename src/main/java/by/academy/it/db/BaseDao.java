@@ -44,8 +44,10 @@ public class BaseDao<T> implements Dao<T> {
             Session session = PersonLoader.util.getSession();
             transaction = session.beginTransaction();
             t = (T) session.get(getPersistentClass(), id);
+            System.out.println("isDirty before commit = "+ session.isDirty());
             transaction.commit();
-            log.info("get clazz:" + t);
+            System.out.println("isDirty after commit = "+ session.isDirty());
+            log.info("get class:" + t);
         } catch (HibernateException e) {
             transaction.rollback();
             log.error("Error get " + getPersistentClass() + " in Dao" + e);
@@ -61,9 +63,10 @@ public class BaseDao<T> implements Dao<T> {
             Session session = PersonLoader.util.getSession();
             transaction = session.beginTransaction();
             t = (T) session.load(getPersistentClass(), id);
-            log.info("load() clazz:" + t);
-            session.isDirty();
+            System.out.println("isDirty before commit = "+ session.isDirty());
+            log.info("load() class:" + t);
             transaction.commit();
+            System.out.println("isDirty after commit = "+ session.isDirty());
         } catch (HibernateException e) {
             log.error("Error load() " + getPersistentClass() + " in Dao" + e);
             transaction.rollback();
