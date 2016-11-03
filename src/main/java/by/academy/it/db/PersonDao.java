@@ -31,7 +31,7 @@ public class PersonDao extends BaseDao<Person> {
     public void flush(Integer id, String newName) throws DaoException {
         try {
             Session session = util.getSession();
-            //setTransaction(session.beginTransaction());
+            setTransaction(session.beginTransaction());
             Person p = (Person)session.get(Person.class, id);
             System.out.println(p);
             System.out.println("isDirty = " + session.isDirty());
@@ -41,7 +41,7 @@ public class PersonDao extends BaseDao<Person> {
             session.flush();
             System.out.println(p);
             System.out.println("isDirty = " + session.isDirty());
-            //getTransaction().commit();
+            getTransaction().commit();
         } catch (HibernateException e) {
             log.error("Error Flush person" + e);
             throw new DaoException(e);
