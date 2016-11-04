@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="by.academy.it.pojos" auto-import="false" catalog="testdb">
-    <class name="Person" table="PERSON">
+<hibernate-mapping package="by.academy.it.pojos" auto-import="false" catalog="testdb" default-access="property">
+    <class name="Person" table="T_PERSON" discriminator-value="P">
         <id name="id" type="int" column="F_ID">
             <generator class="increment"/>
         </id>
-
+        <discriminator column="F_PERSON_TYPE" type="string"/>
         <property name="name" column="F_NAME" type="string"/>
         <property name="surname" column="F_SURNAME" type="string"/>
         <property name="age" column="F_AGE" type="int"/>
+        <subclass name="Emploeer" discriminator-value="E">
+            <property name="company"/>
+            <property name="salary"/>
+        </subclass>
+        <subclass name="Student" discriminator-value="S">
+            <property name="faculty"/>
+            <property name="mark"/>
+        </subclass>
     </class>
 </hibernate-mapping>
 

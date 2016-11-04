@@ -12,7 +12,9 @@ package by.academy.it.loader;
 
 import by.academy.it.db.PersonDao;
 import by.academy.it.db.exceptions.DaoException;
+import by.academy.it.pojos.Emploeer;
 import by.academy.it.pojos.Person;
+import by.academy.it.pojos.Student;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
@@ -47,12 +49,22 @@ public class MenuLoader {
                     getPersonDao().saveOrUpdate(person);
                     break;
                 case 4:
-                    person = loadPerson();
+                    Emploeer emploeer = new Emploeer();
+                    person = createEmploeer(emploeer);
+                    getPersonDao().saveOrUpdate(person);
                     break;
                 case 5:
-                    flushSession();
+                    Student student = new Student();
+                    person = createStudent(student);
+                    getPersonDao().saveOrUpdate(person);
                     break;
                 case 6:
+                    person = loadPerson();
+                    break;
+                case 7:
+                    flushSession();
+                    break;
+                case 8:
                     refreshSession();
                     break;
                 default:
@@ -65,15 +77,19 @@ public class MenuLoader {
     }
 
 
+
+
     private static void printMenu() {
         System.out.println(" Options:");
         System.out.println("        0. Exit");
         System.out.println("        1. Delete Person");
         System.out.println("        2. Get Person");
         System.out.println("        3. Save or Update Person");
-        System.out.println("        4. Load Person");
-        System.out.println("        5. Flush Session");
-        System.out.println("        6. Refresh Session");
+        System.out.println("        4. Save or Update Employeer");
+        System.out.println("        5. Save or Update Student");
+        System.out.println("        6. Load Person");
+        System.out.println("        7. Flush Session");
+        System.out.println("        8. Refresh Session");
     }
 
     public static Person createPerson(Person person) {
@@ -93,6 +109,50 @@ public class MenuLoader {
 //        person.getPersonAddress().setCity("Minsk");
 //        person.getPersonAddress().setStreet("Gaya");
         return person;
+    }
+
+    private static Person createEmploeer(Emploeer emploeer) {
+        System.out.println("Please enter person description:");
+        System.out.print("Name - ");
+
+        if(emploeer == null) {emploeer = new Emploeer();}
+        Scanner scanner = new Scanner(System.in);
+        String parameter = scanner.nextLine();
+        emploeer.setName(parameter);
+        System.out.print("Surname - ");
+        parameter = scanner.nextLine();
+        emploeer.setSurname(parameter);
+        System.out.print("Age - ");
+        emploeer.setAge(scanner.nextInt());
+        System.out.print("Company - ");
+        parameter = scanner.nextLine();
+        parameter = scanner.nextLine();
+        emploeer.setCompany(parameter);
+        System.out.print("Salary - ");
+        emploeer.setSalary(scanner.nextDouble());
+        return emploeer;
+    }
+
+    private static Person createStudent(Student student) {
+        System.out.println("Please enter person description:");
+        System.out.print("Name - ");
+
+        if(student == null) {student = new Student();}
+        Scanner scanner = new Scanner(System.in);
+        String parameter = scanner.nextLine();
+        student.setName(parameter);
+        System.out.print("Surname - ");
+        parameter = scanner.nextLine();
+        student.setSurname(parameter);
+        System.out.print("Age - ");
+        student.setAge(scanner.nextInt());
+        System.out.print("Faculty - ");
+        parameter = scanner.nextLine();
+        parameter = scanner.nextLine();
+        student.setFaculty(parameter);
+        System.out.print("Mark - ");
+        student.setMark(scanner.nextDouble());
+        return student;
     }
 
     public static Person findPerson() {

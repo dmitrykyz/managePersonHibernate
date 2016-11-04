@@ -8,6 +8,7 @@ import static by.academy.it.loader.MenuLoader.getPersonDao;
 
 import static by.academy.it.loader.MenuLoader.createPerson;
 import static by.academy.it.loader.MenuLoader.menu;
+import static by.academy.it.loader.MenuLoaderProduct.menuProduct;
 
 public class PersonLoader {
     private static Logger log = Logger.getLogger(PersonLoader.class);
@@ -23,7 +24,9 @@ public class PersonLoader {
 
         //person = createPerson(person);
         //getPersonDao().saveOrUpdate(person);
-        menu();
+        menu(); //menu for Person
+
+        //menuProduct();
     }
 }
 

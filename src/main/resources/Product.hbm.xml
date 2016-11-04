@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="by.academy.it.pojos" auto-import="false" catalog="testdb" default-access="property">
+    <class name="Product" table="PRODUCT">
+        <id name="id" type="long" column="F_ID">
+            <generator class="increment"/>
+        </id>
+
+        <property name="nameProduct" column="F_NAME_PRODUCT" type="string" access="property"/>
+        <property name="price" column="F_PRICE" type="double" update="false" access="field"/>
+        <property name="status" type="string" not-null="false"/>
+        <property name="totalprice" formula="(F_PRICE*3)" type="double"/>
+    </class>
+</hibernate-mapping>

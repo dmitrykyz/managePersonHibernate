@@ -12,6 +12,7 @@
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <mapping resource="Person.hbm.xml"/>
+        <mapping resource="Product.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
 
