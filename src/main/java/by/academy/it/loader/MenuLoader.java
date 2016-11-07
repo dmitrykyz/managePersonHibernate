@@ -12,6 +12,7 @@ package by.academy.it.loader;
 
 import by.academy.it.db.PersonDao;
 import by.academy.it.db.exceptions.DaoException;
+import by.academy.it.pojos.Address;
 import by.academy.it.pojos.Emploeer;
 import by.academy.it.pojos.Person;
 import by.academy.it.pojos.Student;
@@ -105,6 +106,20 @@ public class MenuLoader {
         person.setSurname(parameter);
         System.out.print("Age - ");
         person.setAge(scanner.nextInt());
+
+        Address address = new Address();
+        System.out.print("City - ");
+        parameter = scanner.nextLine();
+        parameter = scanner.nextLine();
+        address.setCity(parameter);
+        System.out.print("Street - ");
+        parameter = scanner.nextLine();
+        address.setStreet(parameter);
+        System.out.print("ZipCode - ");
+        parameter = scanner.nextLine();
+        address.setZipCode(parameter);
+        person.setAddress(address);
+
 //        person.setPersonAddress(new Address());
 //        person.getPersonAddress().setCity("Minsk");
 //        person.getPersonAddress().setStreet("Gaya");
@@ -124,8 +139,21 @@ public class MenuLoader {
         emploeer.setSurname(parameter);
         System.out.print("Age - ");
         emploeer.setAge(scanner.nextInt());
-        System.out.print("Company - ");
+
+        Address address = new Address();
+        System.out.print("City - ");
         parameter = scanner.nextLine();
+        parameter = scanner.nextLine();
+        address.setCity(parameter);
+        System.out.print("Street - ");
+        parameter = scanner.nextLine();
+        address.setStreet(parameter);
+        System.out.print("ZipCode - ");
+        parameter = scanner.nextLine();
+        address.setZipCode(parameter);
+        emploeer.setAddress(address);
+
+        System.out.print("Company - ");
         parameter = scanner.nextLine();
         emploeer.setCompany(parameter);
         System.out.print("Salary - ");
@@ -146,8 +174,21 @@ public class MenuLoader {
         student.setSurname(parameter);
         System.out.print("Age - ");
         student.setAge(scanner.nextInt());
-        System.out.print("Faculty - ");
+
+        Address address = new Address();
+        System.out.print("City - ");
         parameter = scanner.nextLine();
+        parameter = scanner.nextLine();
+        address.setCity(parameter);
+        System.out.print("Street - ");
+        parameter = scanner.nextLine();
+        address.setStreet(parameter);
+        System.out.print("ZipCode - ");
+        parameter = scanner.nextLine();
+        address.setZipCode(parameter);
+        student.setAddress(address);
+
+        System.out.print("Faculty - ");
         parameter = scanner.nextLine();
         student.setFaculty(parameter);
         System.out.print("Mark - ");

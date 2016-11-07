@@ -2,11 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="by.academy.it.pojos" auto-import="false" catalog="testdb" default-access="property">
-    <class name="Person" table="T_PERSON_COMPONENT" discriminator-value="P">
+    <class name="Person" table="T_PERSON_PER_SUBCLASS">
         <id name="id" type="int" column="F_ID">
             <generator class="increment"/>
         </id>
-        <discriminator column="F_PERSON_TYPE" type="string"/>
         <property name="name" column="F_NAME" type="string"/>
         <property name="surname" column="F_SURNAME" type="string"/>
         <property name="age" column="F_AGE" type="int"/>
@@ -16,16 +15,16 @@
             <property name="zipCode"/>
         </component>
 
-        <subclass name="Emploeer" discriminator-value="E">
+        <joined-subclass name="Emploeer">
+            <key column="F_ID"/>
             <property name="company"/>
             <property name="salary"/>
-        </subclass>
+        </joined-subclass>
 
-        <subclass name="Student" discriminator-value="S">
+        <joined-subclass name="Student">
+            <key column="F_ID"/>
             <property name="faculty"/>
             <property name="mark"/>
-        </subclass>
+        </joined-subclass>
     </class>
 </hibernate-mapping>
-
-

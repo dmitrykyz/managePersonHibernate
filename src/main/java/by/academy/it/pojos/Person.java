@@ -22,6 +22,7 @@ public class Person {
     private Integer age;
     private String name;
     private String surname;
+    private Address address;
 
     public Person() {
     }
@@ -58,6 +59,14 @@ public class Person {
         this.surname = surname;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +93,8 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person : id: " + id + " Name: " + name + " Surname: " + surname + " Age: " +age;
+        return "Person : id: " + id + " Name: " + name + " Surname: " + surname + " Age: " +age
+                + " Address: city-" + getAddress().getCity() + " street-" + getAddress().getStreet()
+                + " zipCode-" + getAddress().getZipCode();
     }
 }
