@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="by.academy.it.pojos" auto-import="false" catalog="testdb">
+    <class name="Worker" table="T_WORKER_PER_CONCRETE_CLASS">
+        <id name="id" type="int" column="F_ID">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="F_NAME" type="string"/>
+
+        <union-subclass name="ContractWorker" table="T_CONTRACT_WORKER">
+            <property name="ratePerHour" type="double"/>
+            <property name="contractDuration" type="string"/>
+        </union-subclass>
+
+        <union-subclass name="RegularWorker">
+            <property name="salary" type="double"/>
+            <property name="bonus" type="integer"/>
+        </union-subclass>
+    </class>
+</hibernate-mapping>

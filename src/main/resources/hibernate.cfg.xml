@@ -11,9 +11,10 @@
         <property name="hibernate.connection.pool_size">10</property>
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
-        <mapping resource="Person_per_subclass.hbm.xml"/>
-        <!--     <mapping resource="Person.hbm.xml"/>  -->
-        <!--  <mapping resource="Product.hbm.xml"/>   -->
+        <mapping resource="Worker_per_concrete_class.hbm.xml"/>          <!-- Table per concrete class mapping -->
+        <!--      <mapping resource="Person_per_subclass.hbm.xml"/> -->  <!--Table per subclass mapping-->
+        <!--     <mapping resource="Person.hbm.xml"/>  --> <!--Table per class hierarchy mapping-->
+        <!--  <mapping resource="Product.hbm.xml"/>   -->  <!--Implement formula-->
     </session-factory>
 </hibernate-configuration>
 

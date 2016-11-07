@@ -4,21 +4,13 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Created by Dmitry on 11/4/2016.
+ * Created by Dmitry on 11/7/2016.
  */
-public class Emploeer extends Person {
-    private String company;
+public class RegularWorker extends Worker {
     private Double salary;
+    private Integer bonus;
 
-    public Emploeer() {
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
+    public RegularWorker() {
     }
 
     public Double getSalary() {
@@ -29,9 +21,12 @@ public class Emploeer extends Person {
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " Company =" + getCompany() + " Salary = " + getSalary();
+    public Integer getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(Integer bonus) {
+        this.bonus = bonus;
     }
 
     @Override
@@ -40,12 +35,12 @@ public class Emploeer extends Person {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Emploeer emploeer = (Emploeer) o;
+        RegularWorker that = (RegularWorker) o;
 
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(company, emploeer.company)
-                .append(salary, emploeer.salary)
+                .append(salary, that.salary)
+                .append(bonus, that.bonus)
                 .isEquals();
     }
 
@@ -53,8 +48,8 @@ public class Emploeer extends Person {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(company)
                 .append(salary)
+                .append(bonus)
                 .toHashCode();
     }
 }
